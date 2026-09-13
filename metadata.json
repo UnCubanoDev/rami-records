@@ -1,0 +1,6 @@
+{
+  "name": "Rami Records",
+  "description": "Sello discográfico y plataforma de música urbana cubana con catálogo de artistas, lanzamientos, eventos y booking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
