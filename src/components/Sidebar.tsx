@@ -13,7 +13,9 @@ import {
   ChevronRight,
   ExternalLink,
   Mic,
-  UserCheck
+  UserCheck,
+  Trophy,
+  Sliders
 } from 'lucide-react';
 import { TabType, Release } from '../types';
 
@@ -41,7 +43,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'inicio' as TabType, label: 'Inicio', icon: Home },
     { id: 'artistas' as TabType, label: 'Artistas', icon: Users, badge: '4' },
     { id: 'musica' as TabType, label: 'Música', icon: Music, badge: 'New' },
+    { id: 'sport' as TabType, label: 'Sport', icon: Trophy, badge: 'Elite', customColor: '#00d2ff' },
+    { id: 'studio' as TabType, label: 'Studio', icon: Sliders, badge: 'Atmos', customColor: '#a855f7' },
     { id: 'eventos' as TabType, label: 'Eventos', icon: Calendar, badge: 'Live' },
+    { id: 'booking' as TabType, label: 'Booking', icon: Ticket },
+  ];
+
+  // Primary 5 items for mobile bottom nav bar
+  const mobileBottomItems = [
+    { id: 'inicio' as TabType, label: 'Inicio', icon: Home },
+    { id: 'musica' as TabType, label: 'Música', icon: Music },
+    { id: 'sport' as TabType, label: 'Sport', icon: Trophy },
+    { id: 'studio' as TabType, label: 'Studio', icon: Sliders },
     { id: 'booking' as TabType, label: 'Booking', icon: Ticket },
   ];
 
@@ -329,7 +342,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-[#121414]/95 backdrop-blur-xl border-t border-white/10 pb-safe"
       >
         <div className="flex justify-around items-center h-16 px-2">
-          {navItems.map((item) => {
+          {mobileBottomItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             return (

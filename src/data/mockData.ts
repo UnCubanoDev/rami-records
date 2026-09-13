@@ -1,4 +1,200 @@
-import { Artist, Release, EventItem, BookingRequest } from '../types';
+import { Artist, Release, EventItem, BookingRequest, SportAthlete, StudioRoom } from '../types';
+import raymelAndPartnerImg from '../assets/images/raymel_and_partner_official_1789273591895.jpg';
+import ramiSportImg from '../assets/images/rami_sport_1789273095419.jpg';
+import ramiStudioImg from '../assets/images/rami_studio_1789273104884.jpg';
+
+export const RAYMEL_AND_PARTNER_IMG = raymelAndPartnerImg;
+export const RAMI_SPORT_IMG = ramiSportImg;
+export const RAMI_STUDIO_IMG = ramiStudioImg;
+
+export const RAYMEL_AND_PARTNER_INFO = {
+  names: 'Raymel & Partner',
+  title: 'Fundadores & Co-CEOs de Rami Records',
+  quote: 'Nuestra visión es unir la potencia de la música urbana, la disciplina del deporte de élite y la ingeniería sonora del estudio bajo un mismo ecosistema global nacido en Cuba para el mundo.',
+  bio: 'Visionarios y líderes del movimiento independiente, Raymel y su Partner han consolidado a Rami Records no solo como un sello discográfico, sino como un conglomerado multidisciplinario que abarca entretenimiento masivo, representación deportiva de atletas internacionales, giras globales y estudios de grabación acústicos de máxima fidelidad.',
+  founders: [
+    {
+      name: 'Raymel',
+      role: 'Fundador & CEO',
+      focus: 'A&R, Visión Creativa & Expansión Musical',
+      badge: 'Dirección Ejecutiva',
+    },
+    {
+      name: 'Partner',
+      role: 'Co-Fundador & VP Operaciones',
+      focus: 'Estrategia de Negocios, Rami Sport & Booking',
+      badge: 'Gestión Global',
+    },
+  ],
+  locations: ['La Habana, Cuba', 'Miami, EE.UU.', 'Madrid, España'],
+  stats: [
+    { label: 'Divisiones Oficiales', value: '4' },
+    { label: 'Artistas & Atletas', value: '+20' },
+    { label: 'Streams & Audiencia', value: '+15M' },
+    { label: 'Sedes Internacionales', value: '3' },
+  ],
+};
+
+export const RAMI_DIVISIONS = [
+  {
+    id: 'entertainment',
+    name: 'Rami Records Entertainment',
+    shortName: 'Entertainment',
+    tagline: 'Música, giras globales y cultura urbana',
+    description: 'El sello discográfico insignia de la música urbana cubana. Producción de discos, giras mundiales, distribución en streaming y management artístico de primer nivel.',
+    iconName: 'Disc',
+    color: '#ff5070',
+    bgColor: 'from-[#ff5070]/20 to-transparent',
+    tabTarget: 'musica' as const,
+  },
+  {
+    id: 'sport',
+    name: 'Rami Records Sport',
+    shortName: 'Sport',
+    tagline: 'Representación atlética & alto rendimiento',
+    description: 'Gestión integral, campamentos de entrenamiento y contratos para boxeadores campeones, prospectos de béisbol y atletas de combate de clase mundial.',
+    iconName: 'Trophy',
+    color: '#00d2ff',
+    bgColor: 'from-[#00d2ff]/20 to-transparent',
+    tabTarget: 'sport' as const,
+  },
+  {
+    id: 'booking',
+    name: 'Rami Records Booking',
+    shortName: 'Booking',
+    tagline: 'Contrataciones oficiales & eventos',
+    description: 'Departamento corporativo para contrataciones exclusivas de artistas y deportistas en festivales, estadios, clubes y eventos privados en todo el planeta.',
+    iconName: 'Ticket',
+    color: '#ffd000',
+    bgColor: 'from-[#ffd000]/20 to-transparent',
+    tabTarget: 'booking' as const,
+  },
+  {
+    id: 'studio',
+    name: 'Rami Records Studio',
+    shortName: 'Studio',
+    tagline: 'Estudios de grabación & Dolby Atmos',
+    description: 'Instalaciones acústicas de vanguardia con consolas analógicas SSL y Neve, micrófonos vintage Neumann y salas preparadas para sonido espacial Dolby Atmos.',
+    iconName: 'Sliders',
+    color: '#a855f7',
+    bgColor: 'from-[#a855f7]/20 to-transparent',
+    tabTarget: 'studio' as const,
+  },
+];
+
+export const INITIAL_ATHLETES: SportAthlete[] = [
+  {
+    id: 'el-relampago-cruz',
+    name: 'Dariel "El Relámpago" Cruz',
+    sport: 'Boxeo',
+    division: 'Peso Superpluma (130 lbs)',
+    record: '14-0-0 (11 KOs)',
+    ranking: 'Top 5 Mundial WBA',
+    origin: 'Pinar del Río / Miami',
+    image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800&auto=format&fit=crop&q=80',
+    bio: 'Invicto noqueador pinareño con la técnica depurada de la escuela cubana de boxeo. Su velocidad supersónica y pegada demoledora lo posicionan como el próximo retador obligatorio al título mundial.',
+    achievements: ['Campeón FedeCaribe WBA 2024', 'Guantes de Oro 2023', 'Mejor Nocaut del Año 2024'],
+    nextFightOrEvent: 'Combate Estelar en Miami Arena • 22 Noviembre',
+    instagram: '@relampago_cruz',
+  },
+  {
+    id: 'yordanis-santana',
+    name: 'Yordanis "El Cañón" Santana',
+    sport: 'Béisbol',
+    division: 'Lanzador Abridor (RHP 99 mph)',
+    record: '2.10 ERA • 142 K',
+    ranking: 'Prospecto #1 Internacional',
+    origin: 'Villa Clara / República Dominicana',
+    image: 'https://images.unsplash.com/photo-1508344928928-7165b67de128?w=800&auto=format&fit=crop&q=80',
+    bio: 'Lanzador diestro con recta supersónica constante sobre las 99 millas por hora y slider que quiebra las rodillas. Firmado y proyectado para debutar en Grandes Ligas bajo la representación de Rami Records Sport.',
+    achievements: ['MVP Serie del Caribe Sub-23', 'Record de ponches en liga de invierno', 'Pitcher del Año 2024'],
+    nextFightOrEvent: 'Showcase de Scouteo MLB • Miami & Arizona',
+    instagram: '@santana_pitcher',
+  },
+  {
+    id: 'kevin-guerrero-solis',
+    name: 'Kevin "El Caimán" Solís',
+    sport: 'MMA',
+    division: 'Peso Welter (170 lbs)',
+    record: '9-1-0 (7 Sumisiones)',
+    ranking: 'Campeón Latinoamericano',
+    origin: 'La Habana / Las Vegas',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80',
+    bio: 'Especialista en lucha grecorromana y jiu-jitsu brasileño. Kevin domina la jaula con una presión asfixiante y golpes en el clinch que neutralizan a cualquier oponente.',
+    achievements: ['Cinturón Dorado Fury FC', 'Invicto en combates por sumisión', 'Candidato a Contender Series'],
+    nextFightOrEvent: 'Defensa de Título • Madrid Fight Night 2025',
+    instagram: '@kevin_caiman_mma',
+  },
+  {
+    id: 'arletis-pena',
+    name: 'Arletis Peña',
+    sport: 'Atletismo',
+    division: 'Velocista 100m y 200m Planos',
+    record: '10.98s en 100m',
+    ranking: 'Medallista Panamericana',
+    origin: 'Camagüey / Madrid',
+    image: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&auto=format&fit=crop&q=80',
+    bio: 'Una de las atletas más explosivas de la pista caribeña. Representada por Rami Sport para patrocinios de marcas deportivas globales y competencias del circuito Diamond League.',
+    achievements: ['Oro en Juegos Panamericanos 2023', 'Record Nacional de Velocidad', 'Embajadora Oficial Rami Sport'],
+    nextFightOrEvent: 'Meeting Internacional de Atletismo • Madrid 2025',
+    instagram: '@arletis_runfast',
+  },
+];
+
+export const INITIAL_STUDIO_ROOMS: StudioRoom[] = [
+  {
+    id: 'sala-habana-a',
+    name: 'Sala Habana A (Main Studio & Dolby Atmos)',
+    type: 'Estudio Principal de Grabación & Mezcla Inmersiva',
+    console: 'Solid State Logic (SSL) Duality Delta 48 Canales',
+    monitors: 'Genelec The Ones 8351B en configuración 7.1.4 Dolby Atmos + Subwoofer 7380A',
+    mics: ['Neumann U87 Ai', 'Telefunken ELA M 251E', 'Sony C-800G', 'Shure SM7B'],
+    dolbyAtmos: true,
+    hourlyRate: 110,
+    image: ramiStudioImg,
+    features: [
+      'Monitoreo inmersivo Dolby Atmos 7.1.4 certificado',
+      'Consola híbrida SSL Duality Delta con faders motorizados',
+      'Cabina vocal flotante con aislamiento acústico de 65 dB',
+      'Pro Tools | HDX 3 con conversores Lynx Aurora(n)',
+      'Lounge VIP privado con catering y bar para artistas',
+    ],
+  },
+  {
+    id: 'sala-neve-b',
+    name: 'Sala Neve B (Beatmaking & Producción Urbana)',
+    type: 'Estudio de Producción Musical, Trap & Reparto',
+    console: 'Neve 8424 Analogue Console',
+    monitors: 'Focal Trio6 Be + Sub6',
+    mics: ['Neumann TLM 103', 'AKG C414 XLS', 'Slate Digital ML-1'],
+    dolbyAtmos: false,
+    hourlyRate: 75,
+    image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&auto=format&fit=crop&q=80',
+    features: [
+      'Teclados analógicos: Moog Subsequent 37, Prophet-6',
+      'Baterías electrónicas MPC X y Maschine MK3 para dembow y timba',
+      'Pre-amplificadores Neve 1073 con EQ de tres bandas',
+      'Ambiente diseñado para sesiones de composición rápida y grabación directa',
+    ],
+  },
+  {
+    id: 'cabina-mastering',
+    name: 'Suite de Masterización Analógica',
+    type: 'Mastering Estéreo & Optimización para Streaming',
+    console: 'Maselec MTC-1X Mastering Transfer Console',
+    monitors: 'ATC SCM110ASL Pro Monitores Principales',
+    mics: ['Cadena de análisis de audio de precisión'],
+    dolbyAtmos: false,
+    hourlyRate: 90,
+    image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&auto=format&fit=crop&q=80',
+    features: [
+      'Compresores analógicos Shadow Hills Mastering Compressor',
+      'Equalizador estéreo Manley Massive Passive con válvulas',
+      'Limitador TC Electronic System 6000',
+      'Optimización de LUFS certificada para Apple Music, Spotify y YouTube',
+    ],
+  },
+];
 
 export const HERO_IMAGE = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDPnxQVezwMphYU2ZvTcB9aPSEbK9GgGSLJ2xHeJkCgPpPQ14ZVJx3YvXyQnGtU5PEDdfXFm7e-6NGesAMq0fft23P0cwBNbRSJ8PnthoO94D_PoYniDxHwmINCpYFlVI8OUuwIwL-wf-xm2LTfqNTA7euCcHnj1bTv3ktmLcBJu5lYKkQwwOabYEGz0rc6tonjzmGJ1-jtC7tAnue-iAqbpvCjvJHz7H0DXi1P0CPZ7yjE1mf9Z6Bb';
 export const BOOKING_HERO_IMAGE = 'https://lh3.googleusercontent.com/aida-public/AB6AXuD1c2oaFxnil7B3iSn0Uz4z5dIgutkyMYHHVsiof_Cv4zkKFLRB3rMkYT2mYEltjNJHPx_tN0KmAGk1W-GtuPxaQnZ-LdvlODkU1R2qhHup3n4bnkwekzN7pPKH13RxFsr5Tzed7wQOA7fLpHZdf3n0lMMwghevWjQJ58hW4Onob3B7qt3iAnjmn_ZTP6pqzcZYowZeaAN3DypJciGxa1i_H89N7jCePvhANMwmOpKdtBRYeztVJQgT';

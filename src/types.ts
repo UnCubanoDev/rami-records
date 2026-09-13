@@ -1,4 +1,50 @@
-export type TabType = 'inicio' | 'artistas' | 'musica' | 'eventos' | 'booking';
+export type DivisionType = 'entertainment' | 'sport' | 'booking' | 'studio';
+
+export type TabType = 'inicio' | 'artistas' | 'musica' | 'eventos' | 'booking' | 'sport' | 'studio';
+
+export interface SportAthlete {
+  id: string;
+  name: string;
+  sport: 'Boxeo' | 'Béisbol' | 'MMA' | 'Atletismo';
+  division: string;
+  record?: string;
+  ranking?: string;
+  origin: string;
+  image: string;
+  bio: string;
+  achievements: string[];
+  nextFightOrEvent?: string;
+  instagram?: string;
+}
+
+export interface StudioRoom {
+  id: string;
+  name: string;
+  type: string;
+  console: string;
+  monitors: string;
+  mics: string[];
+  dolbyAtmos: boolean;
+  hourlyRate: number;
+  image: string;
+  features: string[];
+}
+
+export interface StudioBookingRequest {
+  id: string;
+  clientName: string;
+  email: string;
+  phone: string;
+  roomId: string;
+  roomName: string;
+  date: string;
+  timeSlot: string;
+  hours: number;
+  serviceType: 'Grabación de Voces' | 'Mezcla & Master' | 'Producción Completa' | 'Dolby Atmos';
+  projectDetails: string;
+  status: 'Confirmada' | 'En Revisión';
+  submittedAt: string;
+}
 
 export interface Artist {
   id: string;

@@ -1,6 +1,6 @@
 {
   "name": "Rami Records",
-  "description": "Sello discográfico y plataforma de música urbana cubana con catálogo de artistas, lanzamientos, eventos y booking.",
+  "description": "Plataforma oficial de Rami Records: Entertainment, Sport, Booking y Studio fundada por Raymel y su Partner. Música urbana cubana, representación atlética de élite, contratación y estudios de grabación.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

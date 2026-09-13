@@ -4,13 +4,16 @@
  */
 
 import React, { useState, useEffect, useRef } from 'react';
-import { TabType, Artist, Release, EventItem, BookingRequest, DemoSubmission } from './types';
+import { TabType, Artist, Release, EventItem, BookingRequest, DemoSubmission, SportAthlete, StudioRoom } from './types';
 import {
   INITIAL_ARTISTS,
   INITIAL_RELEASES,
   INITIAL_EVENTS,
   INITIAL_BOOKINGS,
-  DEFAULT_DOCK_TRACK
+  INITIAL_ATHLETES,
+  INITIAL_STUDIO_ROOMS,
+  DEFAULT_DOCK_TRACK,
+  RAMI_DIVISIONS
 } from './data/mockData';
 import { Sidebar } from './components/Sidebar';
 import { AudioPlayerDock } from './components/AudioPlayerDock';
@@ -19,11 +22,14 @@ import { ArtistsView } from './views/ArtistsView';
 import { MusicView } from './views/MusicView';
 import { EventsView } from './views/EventsView';
 import { BookingView } from './views/BookingView';
+import { SportView } from './views/SportView';
+import { StudioView } from './views/StudioView';
 import { ArtistDetailModal } from './components/ArtistDetailModal';
 import { DemoSubmissionModal } from './components/DemoSubmissionModal';
 import { EventTicketModal } from './components/EventTicketModal';
 import { ProfileModal } from './components/ProfileModal';
 import { audioEngine } from './utils/audioEngine';
+import { Disc, Trophy, Ticket, Sliders, Sparkles } from 'lucide-react';
 
 export default function App() {
   // Navigation
@@ -34,6 +40,8 @@ export default function App() {
   const [releases] = useState<Release[]>(INITIAL_RELEASES);
   const [events] = useState<EventItem[]>(INITIAL_EVENTS);
   const [bookingPipeline, setBookingPipeline] = useState<BookingRequest[]>(INITIAL_BOOKINGS);
+  const [athletes] = useState<SportAthlete[]>(INITIAL_ATHLETES);
+  const [studioRooms] = useState<StudioRoom[]>(INITIAL_STUDIO_ROOMS);
 
   // Audio Playback State (Preset to 01:14 / 03:45 matching provided design screenshot)
   const [currentTrack, setCurrentTrack] = useState<Release>(DEFAULT_DOCK_TRACK);
@@ -187,6 +195,67 @@ export default function App() {
       {/* Main Content Area */}
       <main className="flex-1 w-full md:pl-64 transition-all duration-300">
         <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 pt-20 md:pt-8 min-h-screen">
+          
+          {/* ================= PLATFORM DIVISIONS SELECTOR BAR ================= */}
+          <div className="mb-6 p-2 rounded-2xl bg-[#181a1a] border border-white/5 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar shadow-sm">
+            <div className="flex items-center gap-1.5 px-2 shrink-0">
+              <span className="w-2 h-2 rounded-full bg-[#ff5070] animate-pulse" />
+              <span className="text-[11px] font-headline font-bold text-[#9ca3af] uppercase tracking-wider hidden sm:inline">
+                Ecosistema:
+              </span>
+            </div>
+
+            <div className="flex items-center gap-1.5 flex-1 justify-end sm:justify-start">
+              <button
+                onClick={() => setActiveTab('musica')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                  activeTab === 'musica' || activeTab === 'artistas'
+                    ? 'bg-[#ff5070] text-[#67001e] shadow-md shadow-[#ff5070]/20 font-bold'
+                    : 'text-[#d1d5db] hover:bg-white/5'
+                }`}
+              >
+                <Disc className="w-3.5 h-3.5" />
+                <span>Entertainment</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('sport')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                  activeTab === 'sport'
+                    ? 'bg-[#00d2ff] text-[#003b4d] shadow-md shadow-[#00d2ff]/20 font-bold'
+                    : 'text-[#d1d5db] hover:bg-white/5'
+                }`}
+              >
+                <Trophy className="w-3.5 h-3.5" />
+                <span>Sport</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('studio')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                  activeTab === 'studio'
+                    ? 'bg-[#a855f7] text-white shadow-md shadow-[#a855f7]/20 font-bold'
+                    : 'text-[#d1d5db] hover:bg-white/5'
+                }`}
+              >
+                <Sliders className="w-3.5 h-3.5" />
+                <span>Studio</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('booking')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                  activeTab === 'booking'
+                    ? 'bg-[#ffd000] text-[#4d3e00] shadow-md shadow-[#ffd000]/20 font-bold'
+                    : 'text-[#d1d5db] hover:bg-white/5'
+                }`}
+              >
+                <Ticket className="w-3.5 h-3.5" />
+                <span>Booking</span>
+              </button>
+            </div>
+          </div>
+
           {activeTab === 'inicio' && (
             <HomeView
               onSelectTab={setActiveTab}
@@ -215,6 +284,22 @@ export default function App() {
               onPlayRelease={handlePlayRelease}
               currentPlayingId={currentTrack.id}
               isPlaying={isPlaying}
+            />
+          )}
+
+          {activeTab === 'sport' && (
+            <SportView
+              athletes={athletes}
+              onSelectTab={setActiveTab}
+              onShowToast={showToast}
+            />
+          )}
+
+          {activeTab === 'studio' && (
+            <StudioView
+              studioRooms={studioRooms}
+              onSelectTab={setActiveTab}
+              onShowToast={showToast}
             />
           )}
 
